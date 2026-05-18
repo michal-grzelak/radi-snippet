@@ -1,0 +1,13 @@
+[tools]
+node = "latest"
+rust = "latest"
+bun = "latest"
+
+[tasks.dev]
+run = "bun run tauri dev"
+
+[tasks.build]
+run = "bun run tauri build"
+
+[tasks."build:rpm"]
+run = [{ task = "build", args = ["--bundles", "rpm"] }]

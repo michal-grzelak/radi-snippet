@@ -1,0 +1,71 @@
+{
+  "name": "radi-snippet",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "userGid": "1000",
+      "userUid": "1000",
+      "username": "vscode",
+      "upgradePackages": true
+    },
+  },
+  "remoteUser": "vscode",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "fish",
+        "terminal.integrated.profiles.linux": {
+          "fish": {
+            "path": "/home/linuxbrew/.linuxbrew/bin/fish"
+          }
+        },
+        "mise.binPath": "/home/linuxbrew/.linuxbrew/bin/mise"
+      },
+      "extensions": [
+        "hverlin.mise-vscode",
+        "tauri-apps.tauri-vscode",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "rust-lang.rust-analyzer",
+        "tombi-toml.tombi",
+        "fill-labs.dependi"
+      ]
+    }
+  },
+  "mounts": [
+    {
+      "source": "mise-data-volume",
+      "target": "/mnt/mise-data",
+      "type": "volume"
+    },
+    {
+      "source": "linuxbrew-data-volume",
+      "target": "/home/linuxbrew/.linuxbrew",
+      "type": "volume"
+    },
+    {
+      "source": "${localEnv:XDG_RUNTIME_DIR}/${localEnv:WAYLAND_DISPLAY}",
+      "target": "${localEnv:XDG_RUNTIME_DIR}/${localEnv:WAYLAND_DISPLAY}",
+      "type": "bind"
+    },
+    {
+      "source": "/tmp/.X11-unix",
+      "target": "/tmp/.X11-unix",
+      "type": "bind"
+    }
+  ],
+  "securityOpt": [
+    "label=type:container_runtime_t"
+  ],
+  "containerEnv": {
+    "MISE_DATA_DIR": "/mnt/mise-data",
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}"
+  },
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/mnt/mise-data/shims"
+  },
+  "postCreateCommand": "./.devcontainer/post-create.sh"
+}
