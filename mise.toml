@@ -10,4 +10,7 @@ run = "bun run tauri dev"
 run = "bun run tauri build"
 
 [tasks."build:rpm"]
-run = [{ task = "build", args = ["--bundles", "rpm"] }]
+run = [{ task = "build", args = [
+  "--bundles",
+  "rpm",
+] }]

@@ -15,5 +15,3 @@ RUN dnf5 -y group install "c-development"
 RUN dnf5 -y install git
 
 RUN dnf5 -y install chezmoi
-
-RUN curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
