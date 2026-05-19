@@ -7,8 +7,10 @@ RUN dnf5 -y install webkit2gtk4.1-devel \
   file \
   libappindicator-gtk3-devel \
   librsvg2-devel \
-  libxdo-devel \
-  xdg-utils
+  libxdo-devel
+
+RUN dnf5 -y install xdg-utils \
+  at-spi2-core
 
 RUN dnf5 -y group install "c-development"
 

@@ -46,11 +46,6 @@
       "type": "volume"
     },
     {
-      "source": "${localEnv:XDG_RUNTIME_DIR}/${localEnv:WAYLAND_DISPLAY}",
-      "target": "${localEnv:XDG_RUNTIME_DIR}/${localEnv:WAYLAND_DISPLAY}",
-      "type": "bind"
-    },
-    {
       "source": "/tmp/.X11-unix",
       "target": "/tmp/.X11-unix",
       "type": "bind"
@@ -62,13 +57,14 @@
   "containerEnv": {
     "MISE_DATA_DIR": "/mnt/mise-data",
     "DISPLAY": "${localEnv:DISPLAY}",
-    "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}"
+    "XDG_RUNTIME_DIR": "/tmp",
   },
   "remoteEnv": {
     "PATH": "${containerEnv:PATH}:/mnt/mise-data/shims"
   },
   "postCreateCommand": "./.devcontainer/post-create.sh",
+  "initializeCommand": "xhost +SI:localuser:$(whoami)",
   "runArgs": [
-    "--device=/dev/dri:/dev/dri",
+    "--net=host"
   ],
 }

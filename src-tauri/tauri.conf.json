@@ -27,8 +27,8 @@
       "assetProtocol": {
         "enable": true,
         "scope": {
-          "allow": ["$APPCACHE/**/*"],
-          "deny": ["$APPCACHE/**/secrets/**"]
+          "allow": ["$RESOURCE/**/*"],
+          "deny": ["$RESOURCE/**/secrets/**"]
         }
       }
     }
@@ -43,10 +43,8 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ],
-    "linux": {
-      "rpm": {
-        "depends": ["xdg-utils"]
-      }
+    "resources": {
+      "resources/": ""
     }
   }
 }

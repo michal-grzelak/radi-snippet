@@ -1,7 +1,7 @@
 [tools]
 node = "latest"
-rust = "latest"
 bun = "latest"
+rust = "latest"
 
 [tasks.dev]
 run = "bun run tauri dev"
